@@ -1,6 +1,35 @@
 <script setup>
+import { ref } from "vue"
+
 import Footer from "@/components/Footer.vue"
 import Header from "@/components/Header.vue"
+
+const name = ref("")
+const email = ref("")
+const companyName = ref("")
+const title = ref("")
+const message = ref("")
+const notes = ref([])
+
+const addNote = () => {
+  notes.value.push({
+    id: Math.floor(Math.random() * 1000000),
+    name: name.value,
+    email: email.value,
+    companyName: companyName.value,
+    title: title.value,
+    message: message.value,
+  });
+
+  addLocalStorage(notes)
+};
+
+const addLocalStorage = (notes) =>{
+  localStorage.setItem("notes", JSON.stringify(notes))
+  JSON.parse(localStorage.getItem("notes"))
+}
+
+
 </script>
 
 <template>
@@ -67,12 +96,12 @@ import Header from "@/components/Header.vue"
                 <div>
                   <input
                     class="w-full px-[14px] pb-4 bg-transparent border-b outline-none focus:border-[#79C8C7] duration-200 ease-out font-semibold text-[15px] leading-[25px] tracking-[-0.115385px]"
-                    type="text" placeholder="Name">
+                    type="text" placeholder="Name" v-model="name">
                 </div>
                 <div>
                   <input
                     class="w-full px-[14px] pb-4 bg-transparent border-b outline-none focus:border-[#79C8C7] duration-200 ease-out font-semibold text-[15px] leading-[25px] tracking-[-0.115385px] peer invalid:border-[#F67E7E] invalid:placeholder-[#F67E7E]"
-                    type="email" placeholder="Email Address" required>
+                    type="email" placeholder="Email Address" required v-model="email">
                   <span
                     class="invisible font-semibold text-[10px] leading-[12px] text-[#F67E7E] italic px-[14px] peer-invalid:visible">This
                     field is required</span>
@@ -80,20 +109,20 @@ import Header from "@/components/Header.vue"
                 <div>
                   <input
                     class="w-full px-[14px] pb-4 bg-transparent border-b outline-none focus:border-[#79C8C7] duration-200 ease-out font-semibold text-[15px] leading-[25px] tracking-[-0.115385px]"
-                    type="text" placeholder="Company Name">
+                    type="text" placeholder="Company Name" v-model="companyName">
                 </div>
                 <div>
                   <input
                     class="w-full px-[14px] pb-4 bg-transparent border-b outline-none focus:border-[#79C8C7] duration-200 ease-out font-semibold text-[15px] leading-[25px] tracking-[-0.115385px]"
-                    type="text" placeholder="Title">
+                    type="text" placeholder="Title" v-model="title">
                 </div>
                 <div>
                   <textarea
                     class="w-full px-[14px] pb-4 bg-transparent border-b outline-none focus:border-[#79C8C7] duration-200 ease-out font-semibold text-[15px] leading-[25px] tracking-[-0.115385px]"
-                    placeholder="Message"></textarea>
+                    placeholder="Message" v-model="message"></textarea>
                 </div>
                 <button
-                  class="text-left px-8 pt-[9px] pb-[11px] bg-white rounded-[24px] w-[123px] text-[#004047] font-semibold text-[18px] leading-[28px] hover:bg-[#004047] hover:text-white duration-200 ease-out">submit</button>
+                  class="text-left px-8 pt-[9px] pb-[11px] bg-white rounded-[24px] w-[123px] text-[#004047] font-semibold text-[18px] leading-[28px] hover:bg-[#004047] hover:text-white duration-200 ease-out" type="submit" @click="addNote">submit</button>
               </form>
             </div>
           </div>
