@@ -2,7 +2,7 @@
     <section class="bg-[#F67E7E] text-[#012F34]">
         <div class="max-w-[1440px] w-full min-h-[200px] lg:py-[76px] py-[84px] mx-auto relative overflow-hidden">
             <div class="lg:max-w-[917px] sm:max-w-[573px] max-w-[327px] w-full px-[15px] mx-auto">
-                <div class="flex md:flex-row flex-col items-center justify-between">
+                <div class="flex sm:flex-row flex-col items-center justify-between">
                     <p
                         class="font-bold lg:text-[48px] text-[32px] lg:leading-[48px] leading-[32px] md:text-left text-center md:mb-0 mb-6">
                         Ready to get started?
